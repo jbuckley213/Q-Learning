@@ -34,14 +34,15 @@ for episode in range(total_episodes):
     for step in range(max_steps):
         
         exp_exp_tradeoff = random.uniform(0,1)
-        
+        # take max Q value if random number is less than epilson
         if exp_exp_tradeoff > epsilon:              
             action = np.argmax(qtable[state,:])           
-            
+         
         else:
             action = env.action_space.sample()
-            
-        new_state, reward, done, info = env.step(action)
+        
+        # Update from game
+        new_state, reward, done, info = env.step(action)           
         
         #Update Q(s, a):= Q(s, a) + lr*[R[s,a] + gamma*max[s',a']-Q(s,a)]
         qtable[state, action] = qtable[state, action] + learning_rate*(reward 
@@ -53,12 +54,13 @@ for episode in range(total_episodes):
             break
             
     episode += 1
-        
-    epsilon = min_epsilon + (max_epsilon - min_epsilon)*np.exp(-decay_rate*episode)    
-   
+    
+    # Decaying epilson so to exploit rather than explore      
+    epsilon = min_epsilon + (max_epsilon - min_epsilon)*np.exp(-decay_rate*episode) 
 env.reset()
 rewards = []
 
+# Play game
 for episode in range(total_test_episodes):
     state = env.reset()
     step = 0
