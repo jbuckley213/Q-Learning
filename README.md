@@ -18,5 +18,12 @@ The game is from open AI gym. The game has 6 actions which are move north, south
 
 Q Learning
 ============
-The Q learning algorithim is used to learn to play the taxi game. Q(s, a):= Q(s, a) + lr*[R[s,a] + gamma*max[s',a']-Q(s,a)] where s is state, a is action, lr is learning rate, R is reward, gamma is the discount rate, s' is new state, a' next action.  
+The Bellman equation is used to update Q to learn how to play the taxi game. 
+Q(s, a):= Q(s, a) + lr*[R[s,a] + gamma*max[s',a']-Q(s,a)] where s is state, a is action, lr is learning rate, R is reward, gamma is the discount rate, s' is new state, a' next action.
+
+The epsilon rate is the explore and exploit rate. As epsilon decrement the model tends to exploit the highest reward for the current state rather than exploring random actions. 
+
+Results
+===========
+After preforming for 100 episodes the model obtained an average score of 8.72. This is a positive score as the average number of actions per episode is 12.64. There are no illegal "pick ups" or "drop offs" according to the rewards array. This is a satisfactory result but further investigation is needed whether the game can be played more efficiently and achieve a higher score. 
 
