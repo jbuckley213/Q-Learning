@@ -85,3 +85,7 @@ for episode in range(total_test_episodes):
         state = new_state
 env.close()
 print("Score over time: " + str(sum(rewards)/total_test_episodes))
+
+for r in rewards:
+    if r == -10:
+        print("Illegal pick up or drop off was made"
